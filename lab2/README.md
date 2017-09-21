@@ -1,4 +1,4 @@
-##Lab 2 - Mobile App Design 
+Lab 2 - Mobile App Design 
 
 Description of Lab: 
 
