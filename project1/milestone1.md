@@ -14,6 +14,6 @@ There is much precedent for this type of application, and there are many of them
 
 Intended source of content: 
 
-Ideally, most of the information would be added by the consumer on startup, including make and model, gas tank capacity, normal fuel up points, etc. 
+Ideally, most of the information would be added by the consumer on startup, including make and model, gas tank capacity, normal fuel up points, etc. Additional information about location or if a user is driving can be taken from internal systems on the iphone. However, features that require location services may be more difficult to implement and thus are considered to be "stretch" goals for this project. 
 
 Digital version of papere prototype can be found here: 
