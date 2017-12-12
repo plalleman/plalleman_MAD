@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Lab6</string>
+    <string name="title">Sushi Finder</string>
+    <string name="price_point">Choose your price ... </string>
+    <string name="button">Find Sushi!</string>
+    <string-array name="price">
+        <item>$5-$15</item>
+        <item>$15-$25</item>
+        <item>$25+</item>
+    </string-array>
+    <string name="sushi_image">some sushi</string>
+    <string name="suggestedSushi">This is your suggested Sushi Shop: </string>
+    <string name="suggestedSushiShop"></string>
+</resources>
