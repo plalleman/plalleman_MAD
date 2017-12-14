@@ -1,0 +1,9 @@
+Milestone 4 
+
+Reflection: 
+
+This app and project went much more smoothly than the last project. Originally, I was going to do a "Will it snow?" app, but if I was going to do that I might as well make a weather app (since I get so much data from the API anyway). Part of what influenced the changes in this project was the use of the API - data more than a day or two in advance not only costs money but also complicates the API Call quite a bit and made the project intensely more complicated. At the end of the day, I both added complexity and simplified it. 
+
+The challenging part of this project was getting the API Working, I have worked with the weather API before but not to the extent that I needed for this project. In addition, one of the first things I found was that best practice for the API implementation was to run it with Async in "do in background" so that the app wouldn't hang if the API was slow. 
+
+One of the things that I wish I had more time to include was to use location data to send a latitude and longitude to the API and get weather that isn't hard-coded to be for Boulder. This presented some early challenges so I decided that itwas outside of the scope of this simple project, but it is something that I would love to implement in the future. 
