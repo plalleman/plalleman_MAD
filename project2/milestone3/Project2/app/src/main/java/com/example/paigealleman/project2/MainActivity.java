@@ -1,5 +1,13 @@
 package com.example.paigealleman.project2;
 
+/* Sources used for this project:
+NOTE: Image sources are found in a text file in the images folder. They are open source.
+I used:
+The Open Weather API (and documentation): http://openweathermap.org/
+This tutorial for implementing an API call into the app: https://www.androidauthority.com/use-remote-web-api-within-android-app-617869/
+Stackoverflow for helping to get interwebs working on the emulator (command line help) and general JSON parsing reference
+ */
+
 //import android stuff
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
     //write down the api key and how to access it
     //  NOTE: API KEY is: 032a646cfb7e6d04ed5bfd097e5ea6bb
     //ID for the city of boulder is: 5586587
-    static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast?id=5586587&APPID=032a646cfb7e6d04ed5bfd097e5ea6bb";
+    static final String API_URL = "http://api.openweathermap.org/data/2.5/weather?&id=5586587&units=imperial&APPID=032a646cfb7e6d04ed5bfd097e5ea6bb";
     String APIresponse;
+    String temp;
     TextView results;
     ImageView weathericon;
+    String main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +49,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button myButton = (Button)findViewById(R.id.snowbutton);
-        //create listener
+        //create listener for button
         View.OnClickListener onclick = new View.OnClickListener(){
             public void onClick(View view){
-                new RetrieveFeedTask().execute();
+                //action is to make a new api call ->thanks so tutorial for demonstrating this
+                new getWeather().execute();
             }
         };
         myButton.setOnClickListener(onclick);
@@ -59,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    class RetrieveFeedTask extends AsyncTask<Void, Void, String>{
+    class getWeather extends AsyncTask<Void, Void, String>{
         private Exception exception;
 
         protected void onPreExecute() {
@@ -70,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         protected String doInBackground(Void... urls) {
 
-            //connect to the api
+            //connect to the api -> Thanks to web tutorial for this part!
             try {
                 URL url = new URL(API_URL);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -96,35 +107,49 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(String response) {
             if(response == null) {
-                response = "THERE WAS AN ERROR";
+                //error if I get nothing from the API call
+                response = "Error";
             }
-            //hide some things to display the result
+            //hide the button (i don't want people overloading my free api - plus more roomy. And how often do people check the weather anyway?)
             Button myButton = (Button)findViewById(R.id.snowbutton);
             myButton.setVisibility(View.GONE);
-            Log.i("INFO", response);
             //do we actually get anything back?
-            APIresponse = response;
-            //results.setText("The weather today is: " + APIresponse); verifies we do get schtuff
+            //APIresponse = response;
+            //results.setText("The weather today is: " + APIresponse); //verifies we do get schtuff
 
-            /*try {
-                JSONObject json = new JSONObject(response);
-                JSONObject json_weather = json.getJSONObject("main");
-                //look for main weather activity and save it
-                APIresponse = json_weather.getString("temp");
-                //look for any snow activity and save it as snow value
-                //took this out for now because sometimes there isn't a snow value
-                //String snow_value=json_LL.getString("snow");
+
+            try {
+                //make a json object
+                JSONObject json = (JSONObject) new JSONObject(response);
+                //get temperature
+                temp = json.getJSONObject("main").getString("temp");
+
+                //weather is an array and so requires special treatment
+                JSONArray arrayweather = (JSONArray) json.get("weather");
+                JSONObject jsonweather = arrayweather.getJSONObject(0);
+                APIresponse = jsonweather.getString("description");
+                main = jsonweather.getString("main");
 
             }
 
             catch (JSONException e) {
+                //error if the JSON parsing goes awry
                 e.printStackTrace();
-            }*/
+                APIresponse = "error";
+            }
 
             //put stuff into the view
-            results.setText("The weather today is: " + APIresponse);
-
-
+            results.setText("The current weather is: " + APIresponse + "." + "\n" + "The temperature is: " + temp + " degrees.");
+            //change the image based on the description
+            if(main.equals("Clouds")){
+                weathericon.setImageResource(R.drawable.cloud);
+            }
+            else if(main.equals("Rain")){
+                weathericon.setImageResource(R.drawable.drop);
+            }
+            else if(main.equals("Snow")){
+                weathericon.setImageResource(R.drawable.snowflake);
+            }
 
 
         }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Project2</string>
+    <string name="app_name">Weather App</string>
     <string name="Mainbutton">What is the Weather today?</string>
     <string name="date">December 12</string>
     <string name="introduction">Today is: </string>
