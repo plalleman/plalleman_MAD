@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AllemanFinal</string>
+    <string name="title">Burrito Builder</string>
+    <string name="button2">Find!</string>
+    <string name="editText">Creation Name</string>
+    <string name="veggieON">Veggie</string>
+    <string name="meatOFF">Meat</string>
+    <string name="radioBurrito">Burrito</string>
+    <string name="radioTaco">Taco</string>
+    <string name="topping1">Salsa</string>
+    <string name="topping2">Cheese</string>
+    <string name="topping3">Sour Cream</string>
+    <string name="topping4">Guacamole</string>
+    <string name="toppingtitle">Toppings: </string>
+    <string name="switchGluten">Gluten Free</string>
+    <string name="buildbutton">Build!</string>
+    <string-array name="locations">
+        <item>The Hill</item>
+        <item>29th Street</item>
+        <item>Pearl Street</item>
+    </string-array>
+    <string name="suggestedBurrito">You should try: </string>
+    <string name="suggestedBurritoShop"></string>
+</resources>
