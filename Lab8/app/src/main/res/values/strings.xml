@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Pokemon Chooser</string>
+    <string name="title">Choose your pokemon!</string>
+    <string name="imagedescription">Picture of Pokemon</string>
+    <string name="instructions1">Double tap to switch pokemon</string>
+    <string name="instructions2">Fling upwards on image to evolve pokemon</string>
+    <string name="pokemondescription">This Pokemon is: </string>
+    <string name="PokemonName"></string>
+</resources>
